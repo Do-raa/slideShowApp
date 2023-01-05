@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SlideShow</title> 
+   
+</head>
+<body> 
+
+<div id="btn"> 
+    <button id="next" type="button">Next</button> 
+    <button id="show" type="button">SlideShow</button> 
+    <button id="stop" type="button">Stop</button> 
+    <button id="previous" type="button">Previous</button></br> 
+</div>
+<div id="slides"> 
+    <img src="images/1.jpg" alt="" /> 
+    <img src="images/2.jpg" alt="" /> 
+    <img src="images/3.jpg" alt="" /> 
+    <img src="images/4.jpg" alt="" />  
+    <img src="images/5.jpg" alt="" /> 
+    <img src="images/6.jpg" alt="" /> 
+</div> 
+<script>
+        
+    let myBtn = document.getElementById("btn") 
+    let nextImg = document.getElementById("next") 
+    let prevImg = document.getElementById("previous") 
+    let showImg = document.getElementById("show") 
+    let stopImg = document.getElementById("stop") 
+
+    let slideIndex = 0
+   
+    nextImg.addEventListener("click", () =>{
+            if (slideIndex < document.images.length-1) {
+                slideIndex++;
+                document.images[slideIndex-1].style.display = "none";
+                document.images[slideIndex].style.display = "block";
+            }
+    }) 
+
+    prevImg.addEventListener("click", () =>{
+        if (slideIndex > 0) {
+                slideIndex--;
+                document.images[slideIndex+1].style.display = "none";
+                document.images[slideIndex].style.display = "block";
+            }
+        })  
+          
+    showImg.addEventListener("click", () => {
+       var myInterval = setInterval(() => {
+        if (slideIndex == document.images.length) {
+                    slideIndex = 0
+                    document.images[slideIndex].style.display = "block";    
+                }else {
+                    slideIndex++;
+                    document.images[slideIndex-1].style.display = "none";
+                    document.images[slideIndex].style.display = "block";
+                }
+       }, 2000) 
+       
+    }) 
+
+     stopImg.addEventListener("click", () =>{
+        clearInterval(myInterval) 
+     })
+
+    myBtn.style.marginLeft = "10px" 
+    myBtn.style.marginTop = "20px"
+
+    for(let i = 0; i < 6; i++){
+        document.images[i].style.width = "400px"
+        document.images[i].style.height = "300px"  
+        document.images[i].style.margin = "10px" 
+        if(i != 0){
+             document.images[i].style.display = "none"
+        }
+    }
+</script>
+</body>
+</html>
