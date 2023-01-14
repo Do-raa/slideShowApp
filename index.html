@@ -15,52 +15,43 @@
     <button id="previous" type="button">Previous</button></br> 
 </div>
 <div id="slides"> 
-    <img src="images/1.jpg" alt="" /> 
-    <img src="images/2.jpg" alt="" /> 
-    <img src="images/3.jpg" alt="" /> 
-    <img src="images/4.jpg" alt="" />  
-    <img src="images/5.jpg" alt="" /> 
-    <img src="images/6.jpg" alt="" /> 
+    <img id ="image" src="images/1.jpg" alt="" /> 
 </div> 
 <script>
         
-    let myBtn = document.getElementById("btn") 
-    let nextImg = document.getElementById("next") 
-    let prevImg = document.getElementById("previous") 
-    let showImg = document.getElementById("show") 
-    let stopImg = document.getElementById("stop") 
+    const myBtn = document.getElementById("btn") 
+    const nextImg = document.getElementById("next") 
+    const prevImg = document.getElementById("previous") 
+    const showImg = document.getElementById("show") 
+    const stopImg = document.getElementById("stop")  
+    const image = document.getElementById("image")
 
-    let slideIndex = 0
-    let myInterval
+    let slideIndex = 0;
+    let myInterval;
     
     nextImg.addEventListener("click", () =>{
-            if (slideIndex < document.images.length-1) {
+            if (slideIndex < 5) {
                 slideIndex++;
-                document.images[slideIndex-1].style.display = "none";
-                document.images[slideIndex].style.display = "block";
+                image.src = `images/${slideIndex}.jpg`
             }
     }) 
 
     prevImg.addEventListener("click", () =>{
         if (slideIndex > 0) {
                 slideIndex--;
-                document.images[slideIndex+1].style.display = "none";
-                document.images[slideIndex].style.display = "block";
+                image.src = `images/${slideIndex}.jpg`
             }
         })  
           
     showImg.addEventListener("click", () => {
          myInterval = setInterval(() => { 
-        console.log(slideIndex)
-         document.images[slideIndex].style.display = "none";
+            console.log(slideIndex)
 
-        if (slideIndex < document.images.length-1) { 
-                    slideIndex++;   
-                }else { 
+            slideIndex < 5 ?
+                    slideIndex++ :
                     slideIndex = 0
-                } 
-                  
-                    document.images[slideIndex].style.display = "block";
+                
+            image.src = `images/${slideIndex+1}.jpg`
        }, 2000) 
        
     }) 
@@ -76,9 +67,9 @@
         document.images[i].style.width = "400px"
         document.images[i].style.height = "300px"  
         document.images[i].style.margin = "10px" 
-        if(i != 0){
+        /*if(i != 0){
              document.images[i].style.display = "none"
-        }
+        }*/
     }
 </script>
 </body>
